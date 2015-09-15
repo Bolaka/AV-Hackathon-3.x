@@ -60,3 +60,8 @@ Did stratified 5-fold cross validation on the training set.
 
 Used the xgboost's XGBClassifier (sklearn wrapper) with the following parameters:
 **max_depth=3, n_estimators=700, learning_rate=0.05**
+
+#### Scope of improvement
+
+Parameter tuning of classifier.
+Ensembling.
