@@ -165,8 +165,8 @@ def dataPreprocessing(data, test):
     # removing outliers    
     combined = removeOutliers(combined)
     
-    # sum up missing    
-    combined['missingness'] = combined.apply(sumMissing, 1)     
+#    # sum up missing    
+#    combined['missingness'] = combined.apply(sumMissing, 1)     
     
 #    # fill missing
 #    combined = fillMissingby9999(combined)
