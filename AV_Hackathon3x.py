@@ -95,10 +95,10 @@ def dataPreprocessing(data, test):
     # Filled_Form - N = 0, Y = 1
     combined['Filled_Form'] = combined['Filled_Form'].map( {'N': 0, 'Y': 1} ).astype(int)
     
-    # Device_Type - Mobile = 1, Web-browser = 2
+    # Device_Type - Mobile = 0, Web-browser = 1
     combined['Device_Type'] = combined['Device_Type'].map( {'Mobile': 0, 'Web-browser': 1} ).astype(int)
     
-#    # Mobile_Verified - N = 0, Y = 1
+    # Mobile_Verified - N = 0, Y = 1
     combined['Mobile_Verified'] = combined['Mobile_Verified'].map( {'N': 0, 'Y': 1} ).astype(int)
     
     # City
@@ -114,6 +114,7 @@ def dataPreprocessing(data, test):
                                         'TATA CONSULTANCY SERVICES LIMITED', 'TATA CONSULTANCY SERVICES LTD (TCS)CONSUL'] ) , 'Employer_Name' ] = 'TATA CONSULTANCY SERVICES LTD (TCS)'
     combined.loc[ combined.Employer_Name.isin( ['TATA CONSALTANCY SERVICES', 'TATA CONSULTANCY SERVICE', 'TATA CONSULTANCY SERVICES', 
                                         'TATA CONSULTANCY SERVICES LIMITED', 'TATA CONSULTANCY SERVICES LTD (TCS)CONSUL'] ) , 'Employer_Name' ] = 'TATA CONSULTANCY SERVICES LTD (TCS)'
+    # TODO - clean similar outliers in other popular employers if any
     
     # ranking employers by Disbursed sum
     employer_groups = data.groupby('Employer_Name')['Disbursed'].sum()
@@ -193,7 +194,7 @@ def removeOutliers(data):
         
         data[feature + '_std'] = np.abs( (data[feature] - data[feature].mean()) / data[feature].std() )
         if len( data.loc[ data[ feature + '_std' ] > outlier_cutoff, feature ] ) > 0:
-#            print('removing outliers in ', feature, ':\n', data.loc[ data[ feature + '_std' ] > outlier_cutoff, feature ])
+            print('removing outliers in ', feature, ':\n', data.loc[ data[ feature + '_std' ] > outlier_cutoff, feature ])
             data.loc[ data[feature + '_std'] > outlier_cutoff, feature ] = float('nan')
         data.drop( [feature + '_std'], axis=1, inplace=True)
     return data
@@ -215,7 +216,6 @@ def modeling(data, test, classifier):
     
     # the feature set
     features=[
-    #'Age',
     #'DOB',
     'DOB_yr', 
 #    'Lead_Creation_Date',
