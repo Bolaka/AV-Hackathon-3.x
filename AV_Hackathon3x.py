@@ -3,6 +3,9 @@
 Created on Tue Sep 15 11:31:52 2015
 
 @author: bolaka
+
+This solution measures 0.84020 AUC on private leaderboard. (alas I did not submit it!)
+
 """
 
 from __future__ import division
