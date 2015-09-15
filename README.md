@@ -1,5 +1,5 @@
 # AV-Hackathon-3.x
-> Predict customer worth for Happy Customer Bank
+> Predict customer worth for Happy Customer Bank with AUC of ~0.84
 
 #### Here is a brief summary of steps followed:
 
